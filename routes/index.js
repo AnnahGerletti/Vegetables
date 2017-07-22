@@ -3,7 +3,11 @@ var router = express.Router()
 
 var db = require('../db')
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res){
+  res.redirect('/home')
+})
+
+router.get('/home', function (req, res) {
   db.getUsers(req.app.get('connection'))
     .then(function (users) {
       res.render('index', { users: users })
@@ -13,4 +17,6 @@ router.get('/', function (req, res) {
     })
 })
 
+
+router.get('/users')
 module.exports = router
